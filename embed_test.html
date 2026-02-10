@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embed Test</title>
+    <link rel="stylesheet" href="./virtual_try_on_frontend.css" />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      /* Example host site styling */
+      h1 {
+        color: #333;
+      }
+
+      /* The container for the widget. 
+           Note: The internal app uses w-screen h-screen which might try to break out.
+           We add overflow:hidden here just in case, or we rely on position:relative
+           to contain absolute children. 
+        */
+      #virtual-try-on-widget {
+        width: 100%;
+        height: 800px; /* Give it some space */
+        position: relative;
+        border: 2px dashed #ccc;
+        overflow: hidden; /* Prevent full-screen breakout if possible */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Host Website</h1>
+    <p>This mimics a brand website. The widget loads below:</p>
+
+    <!-- The Container -->
+    <div id="virtual-try-on-widget"></div>
+
+    <!-- The Script -->
+    <script src="./virtual-try-on.umd.js"></script>
+    <script>
+      // The script automatically looks for #virtual-try-on-widget on load.
+      // If you want to load it elsewhere:
+      // window.initVirtualTryOn('some-other-id');
+    </script>
+  </body>
+</html>

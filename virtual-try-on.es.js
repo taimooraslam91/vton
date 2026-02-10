@@ -12802,7 +12802,16 @@ window.initVirtualTryOn = async (c, o = {}) => {
     try {
       const g = new URLSearchParams({ tenantId: String(d) });
       h?.sku && g.set("sku", h.sku), h?.variantId && g.set("productVariantId", h.variantId), h?.productVariantId && g.set("productVariantId", h.productVariantId), h?.handle && g.set("productHandle", h.handle);
-      const y = await fetch(`${S.replace(/\/$/, "")}/api/vton/validate?${g}`).then((_) => _.json());
+      const y = await fetch(
+        `${S.replace(/\/$/, "")}/api/vton/validate?${g}`,
+        {
+          headers: {
+            // Ngrok free tunnels show a browser warning page unless this header is set.
+            // Adding it here ensures the initial validate call also bypasses that interstitial.
+            "ngrok-skip-browser-warning": "true"
+          }
+        }
+      ).then((_) => _.json());
       if (!y.isValid || !y.isEnabled) {
         s.style.display = "none";
         return;

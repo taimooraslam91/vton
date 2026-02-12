@@ -4,29 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Embed Test</title>
-    <link rel="stylesheet" href="./virtual_try_on_frontend.css" />
+    <!-- No separate CSS file needed — styles are injected into Shadow DOM automatically -->
     <style>
       body {
         font-family: sans-serif;
         padding: 20px;
       }
 
-      /* Example host site styling */
+      /* Example host site styling — these should NOT affect the widget */
       h1 {
         color: #333;
       }
 
-      /* The container for the widget. 
-           Note: The internal app uses w-screen h-screen which might try to break out.
-           We add overflow:hidden here just in case, or we rely on position:relative
-           to contain absolute children. 
-        */
+      button {
+        background: red !important;
+        color: white !important;
+        padding: 20px !important;
+        font-size: 24px !important;
+      }
+
+      /* The container for the widget */
       #virtual-try-on-widget {
         width: 100%;
-        height: 800px; /* Give it some space */
         position: relative;
         border: 2px dashed #ccc;
-        overflow: hidden; /* Prevent full-screen breakout if possible */
       }
     </style>
   </head>
